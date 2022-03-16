@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/LogService/LabDocker.iml" filepath="$PROJECT_DIR$/LogService/LabDocker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MongoDb/MongoDb.iml" filepath="$PROJECT_DIR$/MongoDb/MongoDb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Round_Robin/Round_Robin.iml" filepath="$PROJECT_DIR$/Round_Robin/Round_Robin.iml" />
+    </modules>
+  </component>
+</project>

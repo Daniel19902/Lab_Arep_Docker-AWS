@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="LabDocker" />
+        <module name="Round_Robin" />
+        <module name="MongoDb" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="LabDocker" target="8" />
+      <module name="MongoDb" target="8" />
+      <module name="Round_Robin" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
