@@ -28,24 +28,26 @@ public class ConnectionMongo {
 
     }
 
-    public List<JSONObject> connectionDb(){
-        System.out.println(mensaje.getMensaje() + "conecction");
-        MongoClient mongoClient = new MongoClient("127.0.0.1");
+    public void connectionDb(){
+        System.out.println(mensaje.getMensaje() + " conecction");
+        MongoClient mongoClient = new MongoClient("db:27017");
         DB db = mongoClient.getDB("mensajes");
         DBCollection dbCollection = db.getCollection("mensaje");
         BasicDBObject m = new BasicDBObject();
         m.put("id", 1);
         m.put("mensaje", mensaje.getMensaje());
         m.put("fecha", String.valueOf(mensaje.getDate()));
-
         dbCollection.insert(m);
-
-        return  consultaMongo(dbCollection);
+        mongoClient.close();
 
     }
 
 
-    public List<JSONObject> consultaMongo(DBCollection dbCollection){
+    public List<JSONObject> consultaMongo(){
+        MongoClient mongoClient = new MongoClient("db:27017");
+
+        DB db = mongoClient.getDB("mensajes");
+        DBCollection dbCollection = db.getCollection("mensaje");
         List<JSONObject> jsonObject = new LinkedList<>();
         DBCursor cursor = dbCollection.find();
         while (cursor.hasNext()){
@@ -54,6 +56,8 @@ public class ConnectionMongo {
             jsonObject1.put("fecha", cursor.next().get("fecha"));
             jsonObject.add(jsonObject1);
         }
+
+        mongoClient.close();
         return jsonObject;
 
     }

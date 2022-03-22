@@ -10,7 +10,7 @@ public class SparkWebApp
         Gson gson = new Gson();
         port(getPort());
         staticFiles.location("public");
-        get("/hello/:mensaje", (req, res) -> roundRobin(req.params(":mensaje")));
+        get("/publicar/:mensaje", (req, res) -> roundRobin(req.params(":mensaje")));
     }
 
     public static String roundRobin(String mensaje){

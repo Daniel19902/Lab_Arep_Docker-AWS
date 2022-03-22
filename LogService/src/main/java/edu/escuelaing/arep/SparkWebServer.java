@@ -10,7 +10,7 @@ public class SparkWebServer
     public static void main( String[] args )
     {
         port(getPort());
-        post("/hello/mensaje", (req, res) -> mensaje(req.body()));
+        post("/publicar/mensaje", (req, res) -> mensaje(req.body()));
     }
 
     public static String mensaje(String mensaje){
@@ -26,7 +26,7 @@ public class SparkWebServer
         if(System.getenv("PORT") != null){
             return Integer.parseInt(System.getenv("PORT"));
         }
-        return 8089;
+        return 8088;
     }
 
 }

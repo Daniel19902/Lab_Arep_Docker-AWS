@@ -1,1 +1,3 @@
-edu\escuelaing\arep\SparkWebApp.class
+edu\escuelaing\arep\ConnectionMongo.class
+edu\escuelaing\arep\Mensaje.class
+edu\escuelaing\arep\SparkWebMongo.class

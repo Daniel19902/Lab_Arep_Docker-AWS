@@ -7,7 +7,7 @@ package edu.escuelaing.arep;
 
 
 import org.json.JSONObject;
-import sun.plugin2.message.Message;
+
 
 import java.util.List;
 
@@ -20,30 +20,21 @@ public class SparkWebMongo
 
         port(getPort());
         post("/mongo/mensaje", (req, res) -> mensaje(req.body()));
-        /*
-        System.out.println( "Hello World!" );
-        ConnectionMongo connectionMongo = new ConnectionMongo();
-        connectionMongo.connectionDb();
-
-         */
     }
 
 
     public static List<JSONObject> mensaje(String message){
         System.out.println(message);
         ConnectionMongo connectionMongo = new ConnectionMongo(message);
-        return connectionMongo.connectionDb();
-
-
+        connectionMongo.connectionDb();
+        return connectionMongo.consultaMongo();
     }
-
-
 
     public static int getPort(){
         if(System.getenv("PORT") != null){
             return Integer.parseInt(System.getenv("PORT"));
         }
-        return 8090;
+        return 8086;
     }
 
 }

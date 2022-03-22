@@ -3,26 +3,30 @@ package edu.escuelaing.arep;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class ConectarContenedor {
 
     private Gson gson;
+    private List<String> puertos = new LinkedList<>();
+    private int position = -1;
 
     public ConectarContenedor() {
         this.gson = new Gson();
+        this.puertos.add("8088");
+        this.puertos.add("8089");
+        this.puertos.add("8090");
     }
 
     public String mensajeContenedor(String mensaje) {
         System.out.println(mensaje);
-        String url = "http://localhost:8089/hello/mensaje";
+        String url = "http://localhost:8088/publicar/mensaje";
         try {
 
             URL url1 = new URL(url);
@@ -42,17 +46,20 @@ public class ConectarContenedor {
             System.out.println(outPut);
             return gson.toJson(outPut);
 
-
-
-
         }catch (Exception e){
             e.printStackTrace();
         }
-
         return gson.toJson("error al pedir información");
     }
 
+    public String getPort(){
 
-
+        if(position < 3){
+            position+=1;
+        }else {
+            position = 0;
+        }
+        return puertos.get(position);
+    }
 
 }

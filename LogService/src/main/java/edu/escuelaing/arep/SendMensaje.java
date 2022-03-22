@@ -2,7 +2,7 @@ package edu.escuelaing.arep;
 
 
 import com.google.gson.Gson;
-import sun.plugin2.message.Message;
+
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -22,7 +22,7 @@ public class SendMensaje {
 
     public String sendMensaje(Mensaje mensaje){
 
-        String url = "http://localhost:8090/mongo/mensaje";
+        String url = "http://localhost:8087/mongo/mensaje";
         try {
 
             URL url1 = new URL(url);
