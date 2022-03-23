@@ -22,7 +22,7 @@ public class SendMensaje {
 
     public String sendMensaje(Mensaje mensaje){
 
-        String url = "http://localhost:8087/mongo/mensaje";
+        String url = "http://webdb:8087/mongo/mensaje";
         try {
 
             URL url1 = new URL(url);
@@ -30,7 +30,7 @@ public class SendMensaje {
             //connection.setRequestProperty("Content-Type:","application/json");
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
-            System.out.println("Enviando mensaje !!!!");
+            System.out.println("Enviando mensaje !!!! "+ mensaje);
             connection.getOutputStream().write(gson.toJson(mensaje).getBytes(StandardCharsets.UTF_8));
 
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));

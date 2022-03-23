@@ -7,4 +7,6 @@ ENV PORT 6000
 COPY /target/classes /usrapp/bin/classes
 COPY /target/dependency /usrapp/bin/dependency
 
+EXPOSE 8088
+
 CMD ["java","-cp","./classes:./dependency/*","edu.escuelaing.arep.SparkWebServer"]

@@ -17,6 +17,25 @@
             <textarea class="form-control" id="textArea" rows="3"></textarea>
         </div>
         <button class="btn btn-primary btn-lg" type="button" id="enviar" onclick="conectar.api( $('#textArea').val() )">Enviar</button>
+        <br>
+        <div>
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+
+                    <th scope="col"> Mensaje </th>
+                    <th scope="col"> Fecha </th>
+
+                </tr>
+                </thead>
+                <tbody id="mensaje_body" >
+
+                </tbody>
+            </table>
+        </div>
     </div>
+
+
+
 </body>
 </html>

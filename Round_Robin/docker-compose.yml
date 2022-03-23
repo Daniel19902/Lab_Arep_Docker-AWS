@@ -1,0 +1,27 @@
+version: '2'
+
+
+services:
+
+  web2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    links:
+      - loadbalancer
+    container_name: robin2
+    ports:
+      - "4568:6000"
+
+  loadbalancer:
+    build:
+      context: ../LogService
+      dockerfile: Dockerfile
+    container_name: log2
+    environment:
+      - PORT=8090
+    ports:
+      - "8090:6000"
+
+
+
