@@ -6,7 +6,7 @@ var conectar = (function (){
 
         api : function (mensaje){
 
-            fetch("http://localhost:4568/publicar"+"/"+mensaje)
+            fetch("http://ec2-44-203-172-157.compute-1.amazonaws.com:4568/publicar"+"/"+mensaje)
                 .then(response => response.json())
                 .then(json => {
                     let json1 = JSON.parse(json)

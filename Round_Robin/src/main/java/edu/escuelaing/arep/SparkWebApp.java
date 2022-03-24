@@ -4,10 +4,13 @@ import com.google.gson.Gson;
 import spark.Filter;
 
 import java.io.UnsupportedEncodingException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static spark.Spark.*;
 public class SparkWebApp
 {
+    private static final AtomicInteger position = new AtomicInteger(-1);
+
     public static void main( String[] args )
     {
         Gson gson = new Gson();
@@ -18,7 +21,8 @@ public class SparkWebApp
     }
 
     public static String roundRobin(String mensaje) throws UnsupportedEncodingException {
-        ConectarContenedor conectarContenedor = new ConectarContenedor();
+
+        ConectarContenedor conectarContenedor = new ConectarContenedor(getPuerto());
         return conectarContenedor.mensajeContenedor(mensaje);
     }
     public static String roundRobin2(String mensaje) throws UnsupportedEncodingException {
@@ -32,6 +36,17 @@ public class SparkWebApp
             return Integer.parseInt(System.getenv("PORT"));
         }
         return 4568;
+    }
+
+    public static int getPuerto(){
+
+        if(position.get() < 2){
+            position.incrementAndGet();
+            System.out.println(position.get());
+        }else {
+            position.set(0);
+        }
+        return position.get();
     }
 
 }

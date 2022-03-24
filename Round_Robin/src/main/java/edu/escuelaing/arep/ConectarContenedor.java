@@ -9,7 +9,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -26,30 +28,28 @@ import org.apache.http.message.BasicNameValuePair;
 public class ConectarContenedor {
 
     private Gson gson;
-    //private List<String> puertos = new LinkedList<>();
-    private int position = -1;
+    private final List<String[]> puertos = new LinkedList<>();
+    private int puerto;
 
-    public ConectarContenedor() {
+    public ConectarContenedor(int puerto) {
         this.gson = new Gson();
+        this.puerto = puerto;
+        this.puertos.add(new String[] {"loadbalancer1", "8090"});
+        this.puertos.add(new String[] {"loadbalancer2", "8091"});
+        this.puertos.add(new String[] {"loadbalancer3", "8092"});
     }
 
     public String mensajeContenedor(String mensaje) throws UnsupportedEncodingException {
         List<NameValuePair> params = new ArrayList<>();
         params.add(new BasicNameValuePair("mensaje", mensaje));
         System.out.println(mensaje + "puerto 8090");
-        String url = "http://loadbalancer:8090/publicar/mensaje";
-        CloseableHttpClient httpClient = HttpClients.custom().build();
-        HttpPost httpPost = new HttpPost("http://loadbalancer:8088/publicar/mensaje");
-        httpPost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+        String[] puerto1 = puertos.get(puerto);
+        String url = "http://"+puerto1[0]+":"+puerto1[1]+"/publicar/mensaje";
+        System.out.println(puerto1[0]+" "+puerto1[1]);
 
         try {
-            /*
-            HttpResponse response = httpClient.execute(httpPost);
-            HttpEntity entity = response.getEntity();
 
-             */
             System.out.println("si hay coneccion hp!!!!");
-
 
             URL url1 = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
@@ -73,19 +73,12 @@ public class ConectarContenedor {
         }catch (Exception e){
             e.printStackTrace();
         }
+
+
+
         return gson.toJson("error al pedir información");
     }
-/*
-    public String getPort(){
 
-        if(position < 3){
-            position+=1;
-        }else {
-            position = 0;
-        }
-        return puertos.get(position);
-    }
 
- */
 
 }

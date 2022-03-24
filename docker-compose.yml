@@ -8,22 +8,46 @@ services:
       context: ./Round_Robin
       dockerfile: Dockerfile
     links:
-      - loadbalancer
+      - loadbalancer1
+      - loadbalancer2
+      - loadbalancer3
     container_name: robin
     ports:
       - "4568:6000"
 
-  loadbalancer:
+  loadbalancer1:
     build:
       context: ./LogService
       dockerfile: Dockerfile
-    container_name: log
+    container_name: log1
     environment:
       - PORT=8090
     links:
       - webdb
     ports:
       - "8090:6000"
+  loadbalancer2:
+    build:
+      context: ./LogService
+      dockerfile: Dockerfile
+    container_name: log2
+    environment:
+      - PORT=8091
+    links:
+      - webdb
+    ports:
+      - "8091:6000"
+  loadbalancer3:
+    build:
+      context: ./LogService
+      dockerfile: Dockerfile
+    container_name: log3
+    environment:
+      - PORT=8092
+    links:
+      - webdb
+    ports:
+      - "8092:6000"
 
   webdb:
     build:
