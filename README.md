@@ -26,7 +26,7 @@ el retorno de la consulta de todos los mensajes de la base de datos
 
 ![](img/14.PNG)
 
-#Arquitectura 
+# Arquitectura 
 ![](img/1.PNG)
 
 Esta es una arquitectura cliente servidor en donde el servidor Round-Robin sirve como un balanceador de carga que
